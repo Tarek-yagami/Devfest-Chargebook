@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+body{
+   font-family:  'Inter';
+   max-width : 100%;
+   max-height: 100%;
+}
+
+h1{
+  font-size: 30px;
+}
+
+.login-container{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100vh;
+}
+
+.right-part{
+  background-color: #264653;
+  width: 42%;
+  height: 100vh;
+  margin-left: 0;
+}
+
+.left-part{ 
+  width: 58%;
+  height: 100vh;
+  margin-right: 0;
+  background-color: #F2FFFC;
+  display: flex;
+  flex-direction: column;
+}
+.illustration{
+margin-left: 0;
+}
+.logo{
+  margin-top: 3%;
+  margin-left: 25%;
+}
+
+.form{
+  display: flex;
+  flex-direction: column;
+  margin-top: 5%;
+  margin-left: 25%;
+  justify-items: center;
+}
+
+input{
+  height: 5vh;
+  width: 23vw;
+  margin: 1.2%;
+  border-radius: 10px;
+  border-color: #808080;
+}
+.signup-button{
+  height: 5vh;
+  width: 23vw;
+  margin: 1.2%;
+  border-radius: 25px;
+  border: none;
+  background-color: #264653;
+  color: white;
+}
+.p1{
+  color:#808080;
+  margin: 0;
+  margin-left: 1%;
+}
+.p2 {
+  padding: 0;
+  margin: 0;
+  color:#264653;
+  margin-left: 35%;
+}
+.register-link{
+  color:#264653;
+}
+.p2{
+  margin-left: 8%;
+  color: black;
+}
+
+.hello-container{
+  margin-top: 2%;
+  margin-left: 25%;
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+} 
+.hello-icon{
+  margin-top: 10%;
+  height: 50px;
+  width: 49px;
+}
+
+.text-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.vector {
+  margin-top: 2%;
+  margin-right: 2%;
+  height : 10%;
+  max-width: 100%;
+}
+.p3{
+  color: rgb(255, 255, 255);
+  margin: 0;
+  margin-top: 2%;
+}
+h2{
+  margin: 0;
+  margin-left: 10%;
+  margin-top: 5%;
+  color: white;
+  font: medium;
+  font-size: 32;
+  font-family:  'Inter', 'Times New Roman';
+}
+.progress-bar{
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+width: 25vw;
+height: 1vw;
+margin-top: 3%;
+margin-left: 25%;
+}
+.rectangle2,.rectangle3{
+  height: 70%;
+  width: 30%;
+  border-radius: 25px;
+  background-color: rgba(42,157,143);
+  opacity: 0.1;
+  border: 2px;
+  border-color: black;
+}
+.rectangle1{
+opacity: 1;
+height: 70%;
+width: 30%;
+border-radius: 25px;
+background-color:#2A9D8F;
+border: 2px;
+border-color: black;
+}

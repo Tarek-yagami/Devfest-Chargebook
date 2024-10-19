@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+body{
+   font-family:  'Inter'
+}
+h1{
+  font-size: 30px;
+}
+.login-container{
+  overflow: hidden; 
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  height: 100vh;
+}
+
+.right-part{
+  background-color: #264653;
+  width: 42%;
+  height: 100vh;
+  margin-left: 0;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+.login-left-part{ 
+  width: 58%;
+  height: 100vh;
+  margin-right: 0;
+  background-color: #F2FFFC;
+}
+
+.logo{
+  margin-top: 3%;
+  margin-left: 25vw;
+}
+.form{
+  display: flex;
+  flex-direction: column;
+  margin-top: 17%;
+  margin-left: 27vw;
+ 
+}
+
+.login-input {
+  height: 40px;
+  width: 320px;
+  margin: 1.2%;
+  border-radius: 10px;
+  border-color: #808080;
+}
+.login-button{
+  height: 40px;
+  width: 320px;
+  margin: 1.2%;
+  border-radius: 25px;
+  border: none;
+  background-color: #264653;
+  color: white;
+}
+.p1{
+  color:#808080;
+  margin: 0;
+  margin-left: 1%;
+}
+.p2 {
+  padding: 0;
+  margin: 0;
+  color:#264653;
+  margin-left: 35%;
+}
+.register-link , .forgot-password-link{
+  color:#264653;
+}
+.forgot-password-link{
+  margin-left : 14vw;
+}
+
+.p3{
+  padding: 0;
+  margin: 0;
+  color:#264653;
+}
+
+.login-hello-container{
+  margin-top: 10vh;
+  margin-left: 25%;
+  width: 41%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+} 
+.hello-icon{
+  margin-top: 10%;
+  height: 50px;
+  width: 49px;
+}
+.illustration{
+  padding: 0;
+  margin-top: 0;
+  height: 60%;
+  width: 40%;
+  width: auto;
+  max-width: 100%;
+}
+.text-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  margin-left : 10%;
+}
+.text-container h2{
+  margin : 0;
+}
+.vector {
+  margin-top: 2%;
+  margin-right: 2%;
+  max-height: 2vh;
+}
+.p3{
+  color: white;
+  margin: 0;
+  margin-top: 2%;
+  font-size: medium;
+  font-weight: 100;
+}
+h2{
+  margin: 0;
+  margin-left: 10%;
+  margin-top: 5%;
+  color: white;
+  font: medium;
+  font-family:  'Inter', 'Times New Roman';
+}
+.right-part-container{
+  margin-left: 3vw;
+}
+.login-button:hover {
+  background-color: #1b3d43; 
+}

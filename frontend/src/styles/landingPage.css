@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Josefin Sans';
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Navbar fixée en haut */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 0px 30px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre pour la navbar */
+  z-index: 1000;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  color: #676673;
+  margin: 0 2vw;
+}
+
+/* Correction du sélecteur */
+.nav-links a {
+  color: #676673;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #36353F;
+  font-weight: bold; /* Correction: utiliser font-weight */
+}
+
+.login-button {
+  height: 6vh;
+  width: 11vw;
+  margin: 1.2%;
+  border-radius: 15px;
+  border: none;
+  background-color: #2A9D8F;
+  color: white;
+}
+
+.signup-button {
+  height: 5vh;
+  width: 23vw;
+  margin: 1.2%;
+  border-radius: 25px;
+  border: none;
+  background-color: #2A9D8F;
+  color: white;
+}
+
+/* Ajustement du contenu principal pour éviter que la navbar ne cache les sections */
+.page-container {
+  padding-top: 70px; /* Compense la hauteur de la navbar */
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  height: 42vh;
+}
+
+.introduction {
+  display: flex;
+  flex-direction: row;
+  padding: 10vh 8vw;
+}
+
+.introduction h1 {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: bold;
+  margin-bottom: 2vh;
+}
+
+p {
+  font-family: 'Nunito', sans-serif;
+  color: #676673;
+}
+
+.rectangle {
+  height: 100%;
+  width: 3px;
+  margin: 3px 10px;
+  background-color: #2A9D8F;
+}
+
+.LP_illustration {
+  height: 42vh;
+}
+
+.text-container {
+  max-width: 50vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.description {
+  width: 80%;
+}
+
+.aboutUS-container {
+  display: flex;
+  flex-direction: row;
+  padding: 10vh 8vw;
+  justify-content: space-between;
+}
+
+.title {
+  display: inline-block;
+  color: #886EE6;
+  font-weight: bold; /* Correction: utiliser font-weight */
+}
+
+.description p {
+  margin-top: 1vh;
+}
+
+.service-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.services-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.services {
+  padding: 10vh 8vw;
+}

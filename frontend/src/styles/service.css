@@ -1,0 +1,30 @@
+.ser-container {
+  height : 18vh;
+  width : 35vw;
+  display: flex;
+  flex-direction: row;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1); /* Drop shadow */
+  padding: 10px;
+  margin : 10px;
+}
+.rectangle {
+  height: 100%;
+  width: 3px;
+  margin: 3px 10px;
+  background-color:  #2A9D8F;
+}
+.contenue-ser{
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+}
+.service-name{
+  margin : 0;
+color: #676673;
+font-size: 16px;
+font-weight: bold;
+font-family: Josefin Sans;
+}
+.service-description{
+color: #676673;
+}
