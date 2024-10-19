@@ -113,25 +113,16 @@ transposed_data['Date'] = pd.to_datetime(transposed_data['Date'])
 transposed_data['Year'] = transposed_data['Date'].dt.year  # Extract the year for filtering
 
 # Helper function to filter data by year range
-def filter_data_by_years(start_year, end_year):
-    # Filter by year range
-    filtered_data = transposed_data[transposed_data['Year'].between(start_year, end_year)]
-    return filtered_data
+def filter_data_by_years(data, start_year, end_year):
+    return data[data['Year'].between(start_year, end_year)]
 
-@app.route('/balance-sheet', methods=['GET'])
-def generate_balance_sheet():
-    start_year = int(request.args.get('start_year'))
-    end_year = int(request.args.get('end_year'))
-
-    # Filter data for the selected years
-    balance_sheet_data = filter_data_by_years(start_year, end_year)
-
-    # Generate a balance sheet response with dates
+# Helper function to generate balance sheet
+def generate_balance_sheet(filtered_data):
     assets = []
     liabilities = []
     equity = []
 
-    for _, row in balance_sheet_data.iterrows():
+    for _, row in filtered_data.iterrows():
         assets.append({
             "Date": row['Date'].strftime('%Y-%m-%d'),
             "Cash": row['Cash'],
@@ -156,11 +147,11 @@ def generate_balance_sheet():
         })
 
     # Calculate the total assets and liabilities for final result
-    total_assets = sum([row['Total Assets'] for _, row in balance_sheet_data.iterrows()])
-    total_liabilities = sum([row['Total Liabilities'] for _, row in balance_sheet_data.iterrows()])
+    total_assets = sum(filtered_data['Total Assets'])
+    total_liabilities = sum(filtered_data['Total Liabilities'])
     total_equity = total_assets - total_liabilities
 
-    response = {
+    return {
         "Assets": assets,
         "Liabilities": liabilities,
         "Equity": equity,
@@ -168,9 +159,29 @@ def generate_balance_sheet():
         "Total Liabilities": total_liabilities,
         "Total Equity": total_equity
     }
-    
-    return jsonify(response)
 
+# Define the route for financial reports
+@app.route('/financial-report', methods=['GET'])
+def generate_financial_report():
+    report_type = request.args.get('report_type')
+    start_year = int(request.args.get('start_year'))
+    end_year = int(request.args.get('end_year'))
+
+    # Filter data for the selected years
+    filtered_data = filter_data_by_years(transposed_data, start_year, end_year)
+
+    if report_type == 'balance_sheet':
+        report_data = generate_balance_sheet(filtered_data)
+    elif report_type == 'income_statement':
+        # Add logic for generating income statement here
+        report_data = {}  # Placeholder for income statement logic
+    elif report_type == 'cash_flow':
+        # Add logic for generating cash flow statement here
+        report_data = {}  # Placeholder for cash flow logic
+    else:
+        return jsonify({"error": "Invalid report type"}), 400
+
+    return jsonify(report_data)
 
 if __name__ == '__main__':
     app.run(debug=True)
