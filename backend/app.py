@@ -14,7 +14,7 @@ def index():
     return "Welcome to the FinTrack API. Use the endpoints /api/total-expenses, /api/insights, and /api/predict-expenses."
 
 # Read and prepare the data
-df = pd.read_csv(r"C:\Users\PC\Desktop\data\apple_income_statement.csv")
+df = pd.read_csv("./data/apple_income_statement.csv")
 df.rename(columns={'Unnamed: 0': 'Metric'}, inplace=True)
 df.iloc[:, 1:] = df.iloc[:, 1:].apply(pd.to_numeric, errors='coerce')
 df.set_index('Metric', inplace=True)
@@ -89,6 +89,88 @@ def predict_expenses():
 
     future_predictions = {str(len(total_expenses) + i): float(predicted_expenses[i]) for i in range(num_years)}
     return jsonify(future_predictions)
+# Load data with the appropriate header
+csv_file = "./data/apple_income_statement.csv"
+data = pd.read_csv(csv_file)  # Use the first row as headers
+
+# Transpose the DataFrame
+transposed_data = data.T
+
+# Rename the first column to "Date"
+transposed_data.columns = transposed_data.iloc[0]  # Set the first row as the new header
+transposed_data = transposed_data[1:]  # Remove the first row
+
+# Reset index to make "Date" a column
+transposed_data.reset_index(inplace=True)
+transposed_data.rename(columns={'index': 'Date'}, inplace=True)
+
+# Print the transposed DataFrame's columns
+print("Columns in the transposed DataFrame:")
+print(transposed_data.columns.tolist())  # List the columns after transposing
+
+# Convert 'Date' to datetime to extract year for filtering
+transposed_data['Date'] = pd.to_datetime(transposed_data['Date'])
+transposed_data['Year'] = transposed_data['Date'].dt.year  # Extract the year for filtering
+
+# Helper function to filter data by year range
+def filter_data_by_years(start_year, end_year):
+    # Filter by year range
+    filtered_data = transposed_data[transposed_data['Year'].between(start_year, end_year)]
+    return filtered_data
+
+@app.route('/balance-sheet', methods=['GET'])
+def generate_balance_sheet():
+    start_year = int(request.args.get('start_year'))
+    end_year = int(request.args.get('end_year'))
+
+    # Filter data for the selected years
+    balance_sheet_data = filter_data_by_years(start_year, end_year)
+
+    # Generate a balance sheet response with dates
+    assets = []
+    liabilities = []
+    equity = []
+
+    for _, row in balance_sheet_data.iterrows():
+        assets.append({
+            "Date": row['Date'].strftime('%Y-%m-%d'),
+            "Cash": row['Cash'],
+            "Cash & Equivalents": row['Cash & Equivalents'],
+            "Short Term Investments": row['Short Term Investments'],
+            "Accounts Receivable - Trade, Net": row['Accounts Receivable - Trade, Net'],
+            "Total Inventory": row['Total Inventory'],
+            "Total Assets": row['Total Assets'],
+        })
+
+        liabilities.append({
+            "Date": row['Date'].strftime('%Y-%m-%d'),
+            "Accounts Payable": row['Accounts Payable'],
+            "Notes Payable/Short Term Debt": row['Notes Payable/Short Term Debt'],
+            "Current Portion of LT Debt": row['Current Port. of  LT Debt/Capital Leases'],
+            "Total Liabilities": row['Total Liabilities'],
+        })
+        
+        equity.append({
+            "Date": row['Date'].strftime('%Y-%m-%d'),
+            "Total Equity": row['Total Equity'],
+        })
+
+    # Calculate the total assets and liabilities for final result
+    total_assets = sum([row['Total Assets'] for _, row in balance_sheet_data.iterrows()])
+    total_liabilities = sum([row['Total Liabilities'] for _, row in balance_sheet_data.iterrows()])
+    total_equity = total_assets - total_liabilities
+
+    response = {
+        "Assets": assets,
+        "Liabilities": liabilities,
+        "Equity": equity,
+        "Total Assets": total_assets,
+        "Total Liabilities": total_liabilities,
+        "Total Equity": total_equity
+    }
+    
+    return jsonify(response)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
