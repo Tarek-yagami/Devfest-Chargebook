@@ -7,8 +7,14 @@ import LandingPage from './pages/landingPage';
 import SignupPage2 from './pages/signuppage2';
 import SignupPage3 from './pages/signuppage3';
 
+// App.js
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import MainPage from './components/MainPage'; // Adjust the path as necessary
+import FinancialReportGenerator from './components/FinancialReportGenerator'; // Adjust the path as necessary
+import ExpenseInsights from './components/ExpenseInsights'; // Adjust the path as necessary
 
-function App() {
+const App = () => {
   return (
     <BrowserRouter>
       <Routes>
@@ -17,10 +23,12 @@ function App() {
         <Route path="/signup/signup2/signup3" element={<SignupPage3 />} /> 
         <Route path="/login" element={<LoginPage />} />
         <Route path="/" element={<LandingPage />} />
-
+        <Route path="/" element={<MainPage />} />
+        <Route path="/reports" element={<FinancialReportGenerator />} />
+        <Route path="/expenses" element={<ExpenseInsights />} />
       </Routes>
     </BrowserRouter>
   );
-}
+};
 
 export default App;
