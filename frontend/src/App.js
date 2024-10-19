@@ -10,9 +10,9 @@ import SignupPage3 from './pages/signuppage3';
 // App.js
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import MainPage from './components/MainPage'; // Adjust the path as necessary
-import FinancialReportGenerator from './components/FinancialReportGenerator'; // Adjust the path as necessary
-import ExpenseInsights from './components/ExpenseInsights'; // Adjust the path as necessary
+import MainPage from './components/MainPage'; 
+import FinancialReportGenerator from './components/FinancialReportGenerator';
+import ExpenseInsights from './components/ExpenseInsights'; 
 
 const App = () => {
   return (
