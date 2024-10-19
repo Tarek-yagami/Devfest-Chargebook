@@ -160,7 +160,42 @@ def generate_balance_sheet(filtered_data):
         "Total Equity": total_equity
     }
 
-# Define the route for financial reports
+def generate_income_statement(filtered_data):
+    income_statements = []
+
+    for _, row in filtered_data.iterrows():
+        # Assuming that Total Revenue can be derived from Common Stock and Retained Earnings
+        total_revenue = row['Common Stock, Total'] + row['Retained Earnings (Accumulated Deficit)']  # Adjust as needed
+        # Assuming a simple placeholder for Expenses (adjust as per your actual data)
+        total_expenses = row['Total Liabilities']  # Adjust this logic based on what you define as expenses
+
+        net_income = total_revenue - total_expenses
+
+        income_statements.append({
+            "Date": row['Date'].strftime('%Y-%m-%d'),
+            "Total Revenue": total_revenue,
+            "Total Expenses": total_expenses,
+            "Net Income": net_income,
+        })
+
+    return {
+        "Income Statements": income_statements
+    }
+def generate_cash_flow_statement(filtered_data):
+    cash_flows = []
+
+    for _, row in filtered_data.iterrows():
+        cash_flows.append({
+            "Date": row['Date'].strftime('%Y-%m-%d'),
+            "Net Cash Provided by Operating Activities": row.get('Net Cash Provided by Operating Activities', 0),
+            "Net Cash Used in Investing Activities": row.get('Net Cash Used in Investing Activities', 0),
+            "Net Cash Provided by Financing Activities": row.get('Net Cash Provided by Financing Activities', 0),
+            "Net Increase (Decrease) in Cash": row.get('Net Increase (Decrease) in Cash', 0)
+        })
+
+    return {
+        "Cash Flow Statements": cash_flows
+    }
 @app.route('/financial-report', methods=['GET'])
 def generate_financial_report():
     report_type = request.args.get('report_type')
@@ -173,11 +208,9 @@ def generate_financial_report():
     if report_type == 'balance_sheet':
         report_data = generate_balance_sheet(filtered_data)
     elif report_type == 'income_statement':
-        # Add logic for generating income statement here
-        report_data = {}  # Placeholder for income statement logic
+        report_data = generate_income_statement(filtered_data)  
     elif report_type == 'cash_flow':
-        # Add logic for generating cash flow statement here
-        report_data = {}  # Placeholder for cash flow logic
+        report_data = generate_cash_flow_statement(filtered_data)
     else:
         return jsonify({"error": "Invalid report type"}), 400
 
