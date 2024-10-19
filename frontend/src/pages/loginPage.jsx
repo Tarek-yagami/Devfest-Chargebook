@@ -22,7 +22,7 @@ return(
           <input type="text" placeholder="Username"  className='login-input'/>
           <input type="password" placeholder="Password" className='login-input' />
           <Link to="../passwordreset"><a href="forgot_password" className='forgot-password-link'>forgot password ?</a></Link>
-          <Link to="/dashboard"><button type="submit" className='login-button'>Login</button></Link>
+          <Link to="/main"><button type="submit" className='login-button'>Login</button></Link>
           <p className='p2'>
            Don’t have an account?  
            <Link to="/signup" className='register-link'>Register</Link>
