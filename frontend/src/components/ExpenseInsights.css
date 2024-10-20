@@ -1,0 +1,43 @@
+.expense-insights {
+  margin: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.menu {
+  margin-bottom: 20px;
+}
+
+.page-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 28px; /* Increased font size */
+  font-weight: bold;
+  color: #333;
+}
+
+.insight-card {
+  margin-bottom: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Slightly darker shadow */
+  border-radius: 12px; /* More rounded corners */
+  background-color: #fff;
+  transition: transform 0.3s, box-shadow 0.3s; /* Enhanced transition */
+}
+
+.insight-card:hover {
+  transform: translateY(-2px); /* Subtle hover effect */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25); /* Darker shadow on hover */
+}
+
+.predict-input {
+  width: 100%;
+  margin-bottom: 10px; /* Space below input */
+}
+
+.loading-indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px; /* Height for loading indicator */
+}
